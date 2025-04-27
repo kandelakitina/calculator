@@ -5,7 +5,7 @@ import {
   multiply,
   divide,
 } from "../src/mathFunctions.ts";
-import { assertEquals } from "@std/assert";
+import { assertEquals, assertThrows } from "@std/assert";
 
 Deno.test("addition works correctly", () => {
   assertEquals(add(2, 3), 5);
@@ -27,4 +27,12 @@ Deno.test("multiplication works correctly", () => {
 Deno.test("division works correctly", () => {
   assertEquals(divide(6, 3), 2);
   assertEquals(divide(-6, 3), -2);
+});
+
+Deno.test("division by zero throws an error", () => {
+  assertThrows(
+    () => divide(5, 0),
+    Error,
+    "Cannot divide by zero",
+  );
 });
