@@ -1,10 +1,9 @@
-// calculator_test.ts
 import {
   add,
   subtract,
   multiply,
   divide,
-} from "../src/mathFunctions.ts";
+} from "../src/mathFunctions.js";
 import { assertEquals, assertThrows } from "@std/assert";
 
 Deno.test("addition works correctly", () => {
