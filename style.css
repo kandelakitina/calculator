@@ -1,0 +1,77 @@
+body {
+  background: #181a1b;
+  font-family: 'Trebuchet MS', 'Arial', sans-serif;
+}
+.calculator {
+  width: 340px;
+  margin: 40px auto;
+  padding: 16px 12px;
+  background: #24201a;
+  border: 4px solid #c6a34b;
+  border-radius: 16px;
+  box-shadow: 0 0 22px #000c  ;
+}
+.display {
+  width: 100%;
+  min-height: 70px;
+  background: #36312a;
+  border: 2px solid #c6a34b;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  color: #f6d47b;
+  font-size: 36px;
+  text-align: right;
+  font-weight: bold;
+  padding: 16px;
+  box-sizing: border-box;
+  text-shadow: 1px 1.5px 0 #000a;
+}
+.row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.button {
+  flex: 1 1 0;
+  height: 46px;
+  background: #221c12;
+  border: 2px solid #46371b;
+  border-radius: 8px;
+  color: #f0c44d;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.1s, color 0.1s;
+  text-shadow: 1px 1px 0 #000c;
+}
+.button:active {
+  background: #685013;
+  color: #fff;
+}
+.clear {
+  background: #852525;
+  border: 2px solid #de960a;
+  color: #ffb542;
+}
+.clear:active {
+  background: #b1411d;
+}
+.delete {
+  background: #23416f;
+  border: 2px solid #de960a;
+  color: #84c5ff;
+}
+.delete:active {
+  background: #376499;
+}
+.operator {
+  background: #685013;
+  border: 2px solid #de960a;
+  color: #ffebcf;
+}
+.operator:active {
+  background: #a77e16;
+}
+.wide {
+  flex: 2 1 0;
+}
