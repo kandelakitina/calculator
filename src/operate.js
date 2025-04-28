@@ -1,3 +1,3 @@
-export function operate(operator, a, b){
-  return operator(a, b);
+export function operate(operator, a, b) {
+    return operator(a, b);
 }
