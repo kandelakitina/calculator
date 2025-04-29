@@ -43,5 +43,4 @@ export {
     handleClear,
     handleDelete,
     handleDecimal,
-    handlerMap
 };
