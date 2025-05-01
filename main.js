@@ -30,8 +30,18 @@ const state = {
 
 function updateDisplay() {
     calculator.querySelector('.display-answer').textContent = state.currentValue;
-    // optionally set history in another display line
-    console.log(state);
+
+    // Show history
+    let historyText = "";
+    if (state.operator && state.previousValue !== "0") {
+        // Operation in progress
+        historyText = `${state.previousValue} ${state.operator}`;
+    } else {
+        historyText = ""; // Or whatever default
+    }
+    calculator.querySelector('.display-history').textContent = historyText;
+
+    // console.log(state);
 }
 
 function handleNumber(el) {
@@ -39,7 +49,7 @@ function handleNumber(el) {
     if (state.waitingForSecondOperand) {
         state.currentValue = num;
         state.waitingForSecondOperand = false;
-    } else if (state.currentValue === '0') {
+    } else if (state.currentValue === '0' || state.currentValue === 'Error') {
         state.currentValue = num;
     } else {
         state.currentValue += num;
@@ -69,7 +79,7 @@ function handleDecimal(el) {
 
 function handleOperator(el) {
     const operator = el.textContent;
-    if (state.currentValue !== 0) {
+    if (state.currentValue !== "0" && state.currentValue !== "Error") {
         if (state.previousValue !== "0" && state.operator) {
             state.currentValue = operate(state.previousValue, state.operator, state.currentValue);
         }
