@@ -21,7 +21,7 @@ const handlerMap = {
 
 const state = {
     currentValue: "0",
-    previousValue: "0",
+    previousValue: null,
     operator: null,
     lastOperator: null,
     lastOperand: null,
@@ -33,11 +33,11 @@ function updateDisplay() {
 
     // Show history
     let historyText = "";
-    if (state.operator && state.previousValue !== "0") {
+    if (state.operator && state.previousValue !== null) {
         // Operation in progress
         historyText = `${state.previousValue} ${state.operator}`;
     } else {
-        historyText = ""; // Or whatever default
+        historyText = "";
     }
     calculator.querySelector('.display-history').textContent = historyText;
 
@@ -60,7 +60,7 @@ function handleNumber(el) {
 
 function handleClear(el) {
     state.currentValue = "0";
-    state.previousValue = "0";
+    state.previousValue = null;
     updateDisplay();
 }
 
@@ -80,7 +80,7 @@ function handleDecimal(el) {
 function handleOperator(el) {
     const operator = el.textContent;
     if (state.currentValue !== "0" && state.currentValue !== "Error") {
-        if (state.previousValue !== "0" && state.operator) {
+        if (state.previousValue !== null && state.operator) {
             state.currentValue = operate(state.previousValue, state.operator, state.currentValue);
         }
         state.previousValue = state.currentValue;
@@ -109,13 +109,13 @@ function operate(a, operator, b) {
 function handleEquals() {
     try {
         // If there's an operation to do (normal case)
-        if (state.operator && state.previousValue !== "0") {
+        if (state.operator && state.previousValue !== null) {
             const result = operate(state.previousValue, state.operator, state.currentValue);
             // Save for repeat '='
             state.lastOperator = state.operator;
             state.lastOperand = state.currentValue; // what was just used as the "right side"
             state.currentValue = result;
-            state.previousValue = "0";
+            state.previousValue = null;
             state.operator = null;
             updateDisplay();
             return;
@@ -128,7 +128,7 @@ function handleEquals() {
         }
     } catch (e) {
         state.currentValue = e.message || "Error";
-        state.previousValue = "0";
+        state.previousValue = null;
         state.operator = null;
         updateDisplay();
     }
