@@ -1,7 +1,5 @@
 # Modular Calculator
 
-[![calculator screenshot](./screenshot.png)](./screenshot.png)
-
 A simple, modular JavaScript calculator built using ES6 modules. Supports basic arithmetic, clear/delete/decimal operations, history tracking, and full mouse + keyboard support.
 
 > **Live demo:** https://kandelakitina.github.io/calculator/
