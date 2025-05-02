@@ -133,3 +133,49 @@ function handleEquals() {
         updateDisplay();
     }
 }
+
+
+// Keyboard support
+document.addEventListener("keydown", (e) => {
+    // Ignore if user is typing in an input/textarea
+    if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+
+    let key = e.key;
+
+    // For number keys (0-9)
+    if (/^[0-9]$/.test(key)) {
+        handleNumber({ textContent: key });
+        e.preventDefault();
+        return;
+    }
+    // Decimal
+    if (key === '.' || key === ',') {
+        handleDecimal({ textContent: '.' }); // Always use '.' for JS
+        e.preventDefault();
+        return;
+    }
+    // Operators
+    if (['+', '-', '*', '/'].includes(key)) {
+        handleOperator({ textContent: key });
+        e.preventDefault();
+        return;
+    }
+    // 'Enter' or '=' triggers equals
+    if (key === 'Enter' || key === '=') {
+        handleEquals();
+        e.preventDefault();
+        return;
+    }
+    // 'Backspace' triggers delete
+    if (key === 'Backspace') {
+        handleDelete();
+        e.preventDefault();
+        return;
+    }
+    // 'Escape' or 'c' triggers clear
+    if (key === 'Escape' || key.toLowerCase() === 'c') {
+        handleClear();
+        e.preventDefault();
+        return;
+    }
+});
